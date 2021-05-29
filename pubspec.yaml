@@ -29,6 +29,7 @@ dependencies:
   logger: ^0.9.4
   shared_preferences: ^2.0.5
   intl: ^0.16.0
+  infinite_scroll_pagination: ^3.0.1
 
 
 
