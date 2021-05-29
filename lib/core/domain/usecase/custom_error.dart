@@ -1,0 +1,1 @@
+abstract class CustomError extends Error {}

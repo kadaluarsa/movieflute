@@ -1,0 +1,2 @@
+
+enum MovieType { nowplaying, popular}
