@@ -17,7 +17,7 @@ class MovieDetailPage extends GetView<MovieDetailController> {
     return Scaffold(
       body: Obx(() {
         switch (controller.movieDetailData.status) {
-          case Status.loading :
+          case Status.loading:
             return Center(
               child: Container(
                 width: 45,
@@ -28,7 +28,7 @@ class MovieDetailPage extends GetView<MovieDetailController> {
               ),
             );
             break;
-          case Status.complete :
+          case Status.complete:
             final movie = controller.movieDetailData.data;
             return SingleChildScrollView(
               child: Column(
@@ -48,7 +48,7 @@ class MovieDetailPage extends GetView<MovieDetailController> {
               ),
             );
             break;
-          case Status.error :
+          case Status.error:
             return Center(
               child: Text(controller.movieDetailData.message),
             );
@@ -85,9 +85,7 @@ class MovieDetailHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textTheme = Theme
-        .of(context)
-        .textTheme;
+    var textTheme = Theme.of(context).textTheme;
 
     var movieInformation = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,8 +98,8 @@ class MovieDetailHeader extends StatelessWidget {
         RatingInformation(movie),
         SizedBox(height: 12.0),
         SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(children: _buildCategoryChips(textTheme)),
+          scrollDirection: Axis.horizontal,
+          child: Row(children: _buildCategoryChips(textTheme)),
         )
       ],
     );
@@ -141,9 +139,7 @@ class Storyline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var textTheme = Theme
-        .of(context)
-        .textTheme;
+    var textTheme = Theme.of(context).textTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,9 +208,7 @@ class PhotoScroller extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textTheme = Theme
-        .of(context)
-        .textTheme;
+    var textTheme = Theme.of(context).textTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -270,9 +264,7 @@ class ActorScroller extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textTheme = Theme
-        .of(context)
-        .textTheme;
+    var textTheme = Theme.of(context).textTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -287,7 +279,7 @@ class ActorScroller extends StatelessWidget {
         SizedBox.fromSize(
           size: const Size.fromHeight(120.0),
           child: ListView.builder(
-            itemCount: actors.length,
+            itemCount: actors.length > 5 ? 5 : actors.length,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.only(top: 12.0, left: 20.0),
             itemBuilder: _buildActor,
@@ -306,10 +298,7 @@ class ArcBannerImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
+    var screenWidth = MediaQuery.of(context).size.width;
 
     return ClipPath(
       clipper: ArcClipper(),
