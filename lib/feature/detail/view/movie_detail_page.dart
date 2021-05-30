@@ -2,12 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movieappget/core/view/data_wrapper.dart';
-import 'package:movieappget/feature/detail/domain/entity/movie_cast.dart';
-import 'package:movieappget/feature/detail/domain/entity/movie_detail.dart';
-import 'package:movieappget/feature/detail/view/movie_detail_controller.dart';
-import 'package:movieappget/feature/shared/component/error_widget.dart';
-import 'package:movieappget/feature/shared/component/loading_widget.dart';
-import 'package:movieappget/feature/shared/component/poster_widget.dart';
+import '../domain/entity/movie_cast.dart';
+import '../domain/entity/movie_detail.dart';
+import 'movie_detail_controller.dart';
+import '../../shared/component/error_widget.dart';
+import '../../shared/component/loading_widget.dart';
+import '../../shared/component/poster_widget.dart';
 
 class MovieDetailPage extends GetView<MovieDetailController> {
   static const routeName = '/detail-movie';
@@ -69,7 +69,7 @@ class MovieDetailHeader extends StatelessWidget {
   final MovieDetail movie;
 
   List<Widget> _buildCategoryChips(TextTheme textTheme) {
-    return movie.genres.map((category) {
+    return movie.genres.take(3).map((category) {
       return Padding(
         padding: const EdgeInsets.only(right: 8.0),
         child: Chip(
