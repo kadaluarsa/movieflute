@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:movieappget/feature/movie/domain/usecase/retrieve_now_playing.dart';
 import 'package:movieappget/feature/shared/data/repository/movie_repository_impl.dart';
 import '../../core/domain/usecase/error_handler.dart';
 import 'home_controller.dart';
@@ -11,9 +12,11 @@ class HomeModule extends Bindings {
   @override
   void dependencies() {
     Get.put(HomeController());
+    Get.put(RetrieveMoviePlaying(
+        Get.find<ErrorHandler>(), Get.find<MovieRepositoryImlp>()));
     Get.put(RetrievePopularMovie(
         Get.find<ErrorHandler>(), Get.find<MovieRepositoryImlp>()));
     Get.put(PopularController(Get.find<RetrievePopularMovie>()));
-    // Get.put(NowPlayController());
+    Get.put(NowPlayController(Get.find<RetrieveMoviePlaying>()));
   }
 }

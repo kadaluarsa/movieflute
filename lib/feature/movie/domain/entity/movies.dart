@@ -131,6 +131,7 @@ class Results {
   Results.fromJson(dynamic json) {
     _posterPath = json["poster_path"];
     _title = json["title"];
+    _id = json["id"];
   }
 
   Map<String, dynamic> toJson() {

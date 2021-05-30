@@ -11,8 +11,8 @@ class MovieHomePage extends GetView<HomeController> {
   static const routeName = '/home';
 
   final movieTabPage = {
-    MovieType.popular : PopularPage(),
-    MovieType.nowplaying : PopularPage()
+    MovieType.nowplaying : NowPlayPage(),
+    MovieType.popular : PopularPage()
   };
 
   @override

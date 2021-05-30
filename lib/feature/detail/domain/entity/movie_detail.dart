@@ -1,3 +1,7 @@
+
+import 'movie_cast.dart';
+import 'movie_image.dart';
+
 /// adult : false
 /// backdrop_path : "/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg"
 /// belongs_to_collection : null
@@ -24,7 +28,7 @@
 /// vote_average : 7.8
 /// vote_count : 3439
 
-class Movie_detail {
+class MovieDetail {
   bool _adult;
   String _backdropPath;
   dynamic _belongsToCollection;
@@ -50,59 +54,97 @@ class Movie_detail {
   bool _video;
   double _voteAverage;
   int _voteCount;
+  List<Cast> _cast;
+  MovieImage _movieImage;
+
+  List<Cast> get cast => _cast;
+  // ignore: non_constant_identifier_names
+  set Caster(List<Cast> cast){
+    _cast = cast;
+  }
+
+  MovieImage get movieImage => _movieImage;
+  // ignore: non_constant_identifier_names
+  set movieImages(MovieImage images){
+    _movieImage = images;
+  }
 
   bool get adult => _adult;
+
   String get backdropPath => _backdropPath;
+
   dynamic get belongsToCollection => _belongsToCollection;
+
   int get budget => _budget;
+
   List<Genres> get genres => _genres;
+
   String get homepage => _homepage;
+
   int get id => _id;
+
   String get imdbId => _imdbId;
+
   String get originalLanguage => _originalLanguage;
+
   String get originalTitle => _originalTitle;
+
   String get overview => _overview;
+
   double get popularity => _popularity;
-  dynamic get posterPath => _posterPath;
+
+  String get posterPath => _posterPath;
+
   List<Production_companies> get productionCompanies => _productionCompanies;
+
   List<Production_countries> get productionCountries => _productionCountries;
+
   String get releaseDate => _releaseDate;
+
   int get revenue => _revenue;
+
   int get runtime => _runtime;
+
   List<Spoken_languages> get spokenLanguages => _spokenLanguages;
+
   String get status => _status;
+
   String get tagline => _tagline;
+
   String get title => _title;
+
   bool get video => _video;
+
   double get voteAverage => _voteAverage;
+
   int get voteCount => _voteCount;
 
-  Movie_detail({
-      bool adult, 
-      String backdropPath, 
-      dynamic belongsToCollection, 
-      int budget, 
-      List<Genres> genres, 
-      String homepage, 
-      int id, 
-      String imdbId, 
-      String originalLanguage, 
-      String originalTitle, 
-      String overview, 
-      double popularity, 
-      dynamic posterPath, 
-      List<Production_companies> productionCompanies, 
-      List<Production_countries> productionCountries, 
-      String releaseDate, 
-      int revenue, 
-      int runtime, 
-      List<Spoken_languages> spokenLanguages, 
-      String status, 
-      String tagline, 
-      String title, 
-      bool video, 
-      double voteAverage, 
-      int voteCount}){
+  MovieDetail(
+      {bool adult,
+      String backdropPath,
+      dynamic belongsToCollection,
+      int budget,
+      List<Genres> genres,
+      String homepage,
+      int id,
+      String imdbId,
+      String originalLanguage,
+      String originalTitle,
+      String overview,
+      double popularity,
+      dynamic posterPath,
+      List<Production_companies> productionCompanies,
+      List<Production_countries> productionCountries,
+      String releaseDate,
+      int revenue,
+      int runtime,
+      List<Spoken_languages> spokenLanguages,
+      String status,
+      String tagline,
+      String title,
+      bool video,
+      double voteAverage,
+      int voteCount}) {
     _adult = adult;
     _backdropPath = backdropPath;
     _belongsToCollection = belongsToCollection;
@@ -128,9 +170,9 @@ class Movie_detail {
     _video = video;
     _voteAverage = voteAverage;
     _voteCount = voteCount;
-}
+  }
 
-  Movie_detail.fromJson(dynamic json) {
+  MovieDetail.fromJson(dynamic json) {
     _adult = json["adult"];
     _backdropPath = json["backdrop_path"];
     _belongsToCollection = json["belongs_to_collection"];
@@ -196,16 +238,19 @@ class Movie_detail {
     map["popularity"] = _popularity;
     map["poster_path"] = _posterPath;
     if (_productionCompanies != null) {
-      map["production_companies"] = _productionCompanies.map((v) => v.toJson()).toList();
+      map["production_companies"] =
+          _productionCompanies.map((v) => v.toJson()).toList();
     }
     if (_productionCountries != null) {
-      map["production_countries"] = _productionCountries.map((v) => v.toJson()).toList();
+      map["production_countries"] =
+          _productionCountries.map((v) => v.toJson()).toList();
     }
     map["release_date"] = _releaseDate;
     map["revenue"] = _revenue;
     map["runtime"] = _runtime;
     if (_spokenLanguages != null) {
-      map["spoken_languages"] = _spokenLanguages.map((v) => v.toJson()).toList();
+      map["spoken_languages"] =
+          _spokenLanguages.map((v) => v.toJson()).toList();
     }
     map["status"] = _status;
     map["tagline"] = _tagline;
@@ -215,7 +260,6 @@ class Movie_detail {
     map["vote_count"] = _voteCount;
     return map;
   }
-
 }
 
 /// iso_639_1 : "en"
@@ -226,14 +270,13 @@ class Spoken_languages {
   String _name;
 
   String get iso6391 => _iso6391;
+
   String get name => _name;
 
-  Spoken_languages({
-      String iso6391, 
-      String name}){
+  Spoken_languages({String iso6391, String name}) {
     _iso6391 = iso6391;
     _name = name;
-}
+  }
 
   Spoken_languages.fromJson(dynamic json) {
     _iso6391 = json["iso_639_1"];
@@ -246,7 +289,6 @@ class Spoken_languages {
     map["name"] = _name;
     return map;
   }
-
 }
 
 /// iso_3166_1 : "US"
@@ -257,14 +299,13 @@ class Production_countries {
   String _name;
 
   String get iso31661 => _iso31661;
+
   String get name => _name;
 
-  Production_countries({
-      String iso31661, 
-      String name}){
+  Production_countries({String iso31661, String name}) {
     _iso31661 = iso31661;
     _name = name;
-}
+  }
 
   Production_countries.fromJson(dynamic json) {
     _iso31661 = json["iso_3166_1"];
@@ -277,7 +318,6 @@ class Production_countries {
     map["name"] = _name;
     return map;
   }
-
 }
 
 /// id : 508
@@ -292,20 +332,20 @@ class Production_companies {
   String _originCountry;
 
   int get id => _id;
+
   String get logoPath => _logoPath;
+
   String get name => _name;
+
   String get originCountry => _originCountry;
 
-  Production_companies({
-      int id, 
-      String logoPath, 
-      String name, 
-      String originCountry}){
+  Production_companies(
+      {int id, String logoPath, String name, String originCountry}) {
     _id = id;
     _logoPath = logoPath;
     _name = name;
     _originCountry = originCountry;
-}
+  }
 
   Production_companies.fromJson(dynamic json) {
     _id = json["id"];
@@ -322,7 +362,6 @@ class Production_companies {
     map["origin_country"] = _originCountry;
     return map;
   }
-
 }
 
 /// id : 18
@@ -333,14 +372,13 @@ class Genres {
   String _name;
 
   int get id => _id;
+
   String get name => _name;
 
-  Genres({
-      int id, 
-      String name}){
+  Genres({int id, String name}) {
     _id = id;
     _name = name;
-}
+  }
 
   Genres.fromJson(dynamic json) {
     _id = json["id"];
@@ -353,5 +391,4 @@ class Genres {
     map["name"] = _name;
     return map;
   }
-
 }

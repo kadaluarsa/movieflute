@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:logger/logger.dart';
-import 'package:movieappget/feature/movie/domain/usecase/retrieve_popular.dart';
-import 'package:movieappget/feature/shared/api_const.dart';
+import '../../domain/usecase/retrieve_popular.dart';
 import '../../../detail/view/movie_detail_page.dart';
 import '../../domain/entity/movies.dart';
 
@@ -21,9 +19,9 @@ class PopularController extends GetxController {
     isPopped = false;
   }
 
-  onTapItem(item) {
-    Get.toNamed(MovieDetailPage.routeName);
-  }
+  void onTapItem(Results movie) => Get.toNamed(MovieDetailPage.routeName,
+        arguments: {'movieId': movie.id, 'movieName': movie.title});
+
 
   @override
   void onInit() {
@@ -34,14 +32,15 @@ class PopularController extends GetxController {
   }
 
   void retrieveMovieList(int currentPage) {
-    popularMovie
-        .execute(currentPage)
-        .then((value) => pagingController.appendPage(value, currentPage + 1));
-    // popularMovie.execute(currentPage).asStream().listen((List<Results> list) {
-    //   pagingController.appendPage(list, currentPage + 1);
-    // }, onError: (error) {
-    //   pagingController.error = error;
-    // });
+    popularMovie.execute(currentPage).asStream().listen((List<Results> list) {
+      if (list.length < _pageSize) {
+        pagingController.appendLastPage(list);
+      } else {
+        pagingController.appendPage(list, currentPage + 1);
+      }
+    }, onError: (error) {
+      pagingController.error = error;
+    });
   }
 
   @override

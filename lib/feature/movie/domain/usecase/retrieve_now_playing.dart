@@ -11,7 +11,7 @@ class RetrieveMoviePlaying extends UseCase<List<Results>, int> {
 
   @override
   Future<List<Results>> build(int page) async {
-    await repository.getMovieNowPlaying(page);
+    return await repository.getMovieNowPlaying(page);
   }
 
   @override

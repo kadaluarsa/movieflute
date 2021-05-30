@@ -10,8 +10,9 @@ class MovieRepositoryImlp {
   MovieRepositoryImlp(this._datasource);
 
   @override
-  Future<Movie_detail> getMovieDetail(String movieId) async {
-    var data = await _datasource.getMovieDetail(movieId);
+  Future<MovieDetail> getMovieDetail(int movieId) async {
+    var data = await _datasource.getMovieDetail(
+        ApiConstant.apiKey, ApiConstant.language, movieId);
     return data;
   }
 
