@@ -1,2 +1,2 @@
-const nowplayIcon = 'packages/movieappget/assets/picture/nowplay.png';
-const popularIcon = 'packages/movieappget/assets/picture/popular.png';
+const nowplayIcon = 'asset/icon/nowplay.png';
+const popularIcon = 'asset/icon/popular.png';

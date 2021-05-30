@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'feature/detail/movie_detail_module.dart';
+import 'feature/detail/view/movie_detail_page.dart';
+import 'feature/movie/home_module.dart';
+import 'feature/movie/home_page.dart';
 
 import 'app_module.dart';
 
@@ -16,7 +20,15 @@ class MovieApp extends GetView<MovieAppModule> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: ,
-    )
+      initialRoute: MovieHomePage.routeName,
+      getPages: [
+        GetPage(name: MovieHomePage.routeName,
+            page: () => MovieHomePage(),
+            binding: HomeModule()),
+        GetPage(name: MovieDetailPage.routeName,
+            page: () => MovieDetailPage(),
+            binding: MovieDetailModule())
+      ],
+    );
   }
 }

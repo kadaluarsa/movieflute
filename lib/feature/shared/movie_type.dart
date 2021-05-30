@@ -1,5 +1,7 @@
-import 'package:movieappget/feature/movie/domain/entity/movies.dart';
-import 'package:movieappget/feature/shared/asset_const.dart';
+import '../movie/domain/entity/movies.dart';
+import 'asset_const.dart';
+
+const API_KEY = '7185bd80341e2f2880fcb94cd9e61f43';
 
 final movieTypeLabel = {
   MovieType.nowplaying: 'Now Playing',

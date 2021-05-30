@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movieappget/feature/movie/domain/entity/movies.dart';
-import 'package:movieappget/feature/movie/home_controller.dart';
-import 'package:movieappget/feature/movie/movietype/nowplaying/nowplay_page.dart';
-import 'package:movieappget/feature/movie/movietype/popular/popular_page.dart';
-import 'package:movieappget/feature/shared/component/icon_tab.dart';
-import 'package:movieappget/feature/shared/movie_type.dart';
+import 'domain/entity/movies.dart';
+import 'home_controller.dart';
+import 'movietype/nowplaying/nowplay_page.dart';
+import 'movietype/popular/popular_page.dart';
+import '../shared/component/icon_tab.dart';
+import '../shared/movie_type.dart';
 
 class MovieHomePage extends GetView<HomeController> {
   static const routeName = '/home';
 
   final movieTabPage = {
     MovieType.popular : PopularPage(),
-    MovieType.nowplaying : NowPlayPage()
+    MovieType.nowplaying : PopularPage()
   };
 
   @override
