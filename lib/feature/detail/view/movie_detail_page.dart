@@ -16,7 +16,7 @@ class MovieDetailPage extends GetView<MovieDetailController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() {
-        switch(controller.movieDetailData.status){
+        switch (controller.movieDetailData.status) {
           case Status.loading :
             return Center(
               child: Container(
@@ -27,7 +27,7 @@ class MovieDetailPage extends GetView<MovieDetailController> {
                 ),
               ),
             );
-                break;
+            break;
           case Status.complete :
             final movie = controller.movieDetailData.data;
             return SingleChildScrollView(
@@ -38,7 +38,9 @@ class MovieDetailPage extends GetView<MovieDetailController> {
                     padding: const EdgeInsets.all(20.0),
                     child: Storyline(movie.overview),
                   ),
-                  PhotoScroller(['https://image.tmdb.org/t/p/w185' + movie.posterPath],180),
+                  PhotoScroller(
+                      ['https://image.tmdb.org/t/p/w185' + movie.posterPath],
+                      180),
                   SizedBox(height: 20.0),
                   ActorScroller(movie.cast),
                   SizedBox(height: 50.0),
@@ -69,7 +71,7 @@ class MovieDetailHeader extends StatelessWidget {
   final MovieDetail movie;
 
   List<Widget> _buildCategoryChips(TextTheme textTheme) {
-    return movie.genres.take(3).map((category) {
+    return movie.genres.map((category) {
       return Padding(
         padding: const EdgeInsets.only(right: 8.0),
         child: Chip(
@@ -83,7 +85,9 @@ class MovieDetailHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textTheme = Theme.of(context).textTheme;
+    var textTheme = Theme
+        .of(context)
+        .textTheme;
 
     var movieInformation = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +99,10 @@ class MovieDetailHeader extends StatelessWidget {
         SizedBox(height: 8.0),
         RatingInformation(movie),
         SizedBox(height: 12.0),
-        Row(children: _buildCategoryChips(textTheme)),
+        SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(children: _buildCategoryChips(textTheme)),
+        )
       ],
     );
 
@@ -103,7 +110,8 @@ class MovieDetailHeader extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 140.0),
-          child: ArcBannerImage('https://image.tmdb.org/t/p/w300' +movie.backdropPath),
+          child: ArcBannerImage(
+              'https://image.tmdb.org/t/p/w300' + movie.backdropPath),
         ),
         Positioned(
           bottom: 0.0,
@@ -113,7 +121,7 @@ class MovieDetailHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Poster('https://image.tmdb.org/t/p/w185' +movie.posterPath,180),
+              Poster('https://image.tmdb.org/t/p/w185' + movie.posterPath, 180),
               SizedBox(width: 16.0),
               Expanded(child: movieInformation),
             ],
@@ -133,7 +141,9 @@ class Storyline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var textTheme = Theme.of(context).textTheme;
+    var textTheme = Theme
+        .of(context)
+        .textTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -202,7 +212,9 @@ class PhotoScroller extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textTheme = Theme.of(context).textTheme;
+    var textTheme = Theme
+        .of(context)
+        .textTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -242,7 +254,9 @@ class ActorScroller extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            backgroundImage: NetworkImage('https://image.tmdb.org/t/p/w185' +actor.profilePath,scale: 0.5),
+            backgroundImage: NetworkImage(
+                'https://image.tmdb.org/t/p/w185' + actor.profilePath,
+                scale: 0.5),
             radius: 40.0,
           ),
           Padding(
@@ -256,7 +270,9 @@ class ActorScroller extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textTheme = Theme.of(context).textTheme;
+    var textTheme = Theme
+        .of(context)
+        .textTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -290,12 +306,15 @@ class ArcBannerImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
+    var screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
 
     return ClipPath(
       clipper: ArcClipper(),
       child: CachedNetworkImage(
-        imageUrl : imageUrl,
+        imageUrl: imageUrl,
         width: screenWidth,
         height: 230.0,
         fit: BoxFit.cover,
