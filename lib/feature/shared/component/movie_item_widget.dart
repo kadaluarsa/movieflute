@@ -17,7 +17,7 @@ class MovieItemWidget extends StatelessWidget {
       onTap: onTap,
       child: Column(
         children: [
-          Poster('https://image.tmdb.org/t/p/w185' + movies.posterPath,
+          Poster(movies.posterPath != null ? 'https://image.tmdb.org/t/p/w185' + movies.posterPath : 'https://cdn4.vectorstock.com/i/1000x1000/22/08/cinema-hall-movie-interior-with-coming-soon-text-vector-22762208.jpg',
               MediaQuery.of(context).size.width / 2),
           Center(
             child: Hero(

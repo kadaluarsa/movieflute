@@ -109,8 +109,8 @@ class MovieDetailHeader extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 140.0),
-          child: ArcBannerImage(
-              'https://image.tmdb.org/t/p/w300' + movie.backdropPath),
+          child: ArcBannerImage(movie.backdropPath != null ?
+              'https://image.tmdb.org/t/p/w300' + movie.backdropPath : ''),
         ),
         Positioned(
           bottom: 0.0,
@@ -120,7 +120,7 @@ class MovieDetailHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Poster('https://image.tmdb.org/t/p/w185' + movie.posterPath, 180),
+              Poster(movie.posterPath != null ? 'https://image.tmdb.org/t/p/w185' + movie.posterPath : '' , 180),
               SizedBox(width: 16.0),
               Expanded(child: movieInformation),
             ],
