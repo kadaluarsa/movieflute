@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movieappget/core/view/data_wrapper.dart';
+import 'package:movieappget/feature/shared/asset_const.dart';
 import '../domain/entity/movie_cast.dart';
 import '../domain/entity/movie_detail.dart';
 import 'movie_detail_controller.dart';
@@ -42,7 +43,7 @@ class MovieDetailPage extends GetView<MovieDetailController> {
                       ['https://image.tmdb.org/t/p/w185' + movie.posterPath],
                       180),
                   SizedBox(height: 20.0),
-                  ActorScroller(movie.cast),
+                  ActorScroller(movie.cast,80.0),
                   SizedBox(height: 50.0),
                 ],
               ),
@@ -236,22 +237,30 @@ class PhotoScroller extends StatelessWidget {
 
 //actor
 class ActorScroller extends StatelessWidget {
-  ActorScroller(this.actors);
+  ActorScroller(this.actors, this.height);
+
+  final double height;
+  static const ava_ratio = 1.0;
 
   final List<Cast> actors;
 
   Widget _buildActor(BuildContext ctx, int index) {
     var actor = actors[index];
+    var width = ava_ratio * height;
 
     return Padding(
       padding: const EdgeInsets.only(right: 16.0),
       child: Column(
         children: [
-          CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://image.tmdb.org/t/p/w185' + actor.profilePath,
-                scale: 0.5),
-            radius: 40.0,
+          ClipOval(
+            child: CachedNetworkImage(
+              height: height,
+              width: width,
+              fit: BoxFit.cover,
+              imageUrl: getProfileImage(actor),
+              placeholder: (context, url) => LoadingIndicator(),
+              errorWidget: (context, url, error) => ErrorImage(),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
@@ -288,6 +297,8 @@ class ActorScroller extends StatelessWidget {
       ],
     );
   }
+
+  String getProfileImage(Cast actor) => actor.profilePath != null ? 'https://image.tmdb.org/t/p/w185${actor.profilePath}' : 'https://avatars.githubusercontent.com/u/10069565?v=4';
 }
 
 //banner
