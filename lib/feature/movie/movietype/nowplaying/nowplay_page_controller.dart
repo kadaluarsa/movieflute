@@ -22,7 +22,6 @@ class NowPlayController extends GetxController
   }
 
   void onTapItem(Results movie) {
-    Logger().e("anjin ${movie.id}");
     Get.toNamed(MovieDetailPage.routeName,
         arguments: {'movieId': movie.id, 'movieName': movie.title});
   }

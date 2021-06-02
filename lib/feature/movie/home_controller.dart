@@ -15,7 +15,6 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
 
   @override
   void onInit() {
-    super.onInit();
     var movieParam = Get.arguments as MovieNavigationParam;
     var transactionType = movieParam != null && movieParam.type != null
         ? movieParam.type
@@ -24,5 +23,6 @@ class HomeController extends GetxController with SingleGetTickerProviderMixin {
     if (movieTabList != null) {
       tabController.index = movieTabList.indexOf(transactionType);
     }
+    super.onInit();
   }
 }

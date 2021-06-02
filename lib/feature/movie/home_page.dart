@@ -7,19 +7,40 @@ import 'movietype/popular/popular_page.dart';
 import '../shared/component/icon_tab.dart';
 import '../shared/movie_type.dart';
 
+class KeepAliveWrapper extends StatefulWidget {
+  final Widget child;
+
+  const KeepAliveWrapper({Key key, this.child}) : super(key: key);
+
+  @override
+  __KeepAliveWrapperState createState() => __KeepAliveWrapperState();
+}
+
+class __KeepAliveWrapperState extends State<KeepAliveWrapper>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return widget.child;
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+}
+
 class MovieHomePage extends GetView<HomeController> {
   static const routeName = '/home';
 
   final movieTabPage = {
-    MovieType.nowplaying : NowPlayPage(),
-    MovieType.popular : PopularPage()
+    MovieType.nowplaying : KeepAliveWrapper(child : NowPlayPage()),
+    MovieType.popular : KeepAliveWrapper(child: PopularPage())
   };
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(130),
+        preferredSize: Size.fromHeight(100),
         child: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
